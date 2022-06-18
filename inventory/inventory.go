@@ -1,4 +1,3 @@
 package inventory
 
-type Inventory struct {
-}
+type Inventory struct {}
