@@ -8,7 +8,10 @@ import (
 )
 
 type Store struct {
+<<<<<<< HEAD
+=======
 	Inventory inventory.Inventory
+>>>>>>> main
 	Basket    basket.Basket
 	Profit    uint
 	Budget    uint
@@ -17,6 +20,15 @@ type Store struct {
 func (s Store) Sell() {
 	s.Budget = 20000000
 	for {
+<<<<<<< HEAD
+		inventory.Show()
+		fmt.Print("Enter product name >>> ")
+		_, err := fmt.Scan(&s.Basket.Name)
+		if err != nil{
+			
+		}
+		s.Basket.Quantity, s.Basket.Price, s.Basket.OriginPrice := inventory.Check(s.Basket.Name)
+=======
 		product.Show()
 		name := ""
 		var quantity uint
@@ -45,5 +57,6 @@ func (s Store) Sell() {
 				fmt.Scan(&check)
 			}
 		}
+>>>>>>> main
 	}
 }
