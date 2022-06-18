@@ -1,5 +1,7 @@
 package dealer
 
-type Dealer struct {
+type Dealer struct {}
+
+func (d Dealer) AddProduct()  {
 	
 }
