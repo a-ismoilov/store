@@ -27,6 +27,7 @@ func (s Store) Sell() {
 			continue
 		}
 		quantity, boolean := inventory.Check(name)
+		AGAIN:
 		if boolean {
 			fmt.Print("Enter product quantity to buy --> ")
 			_, err = fmt.Scan(&quantity)
@@ -34,8 +35,15 @@ func (s Store) Sell() {
 				fmt.Println("can't read input")
 				continue
 			}
-		}else{
-			boolean = inventory.Inventory.AddProduct(name)
+		} else {
+			boolean = inventory.Inventory.AddProduct(name, s.Budget)
+			if boolean {
+				goto AGAIN
+			}else{
+				fmt.Println("we have not enough budget\nWill you buy something else[y/n] --> ")
+				check := ""
+				fmt.Scan(&check)
+			}
 		}
 	}
 }
