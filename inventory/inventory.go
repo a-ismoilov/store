@@ -1,16 +1,43 @@
 package inventory
 
-import "shop/dealer"
+import (
+	"runtime/trace"
+	"shop/dealer"
+)
 
-type Inventory struct {}
+type Inventory struct {
+	ProductList product.ProductList
+}
 
-func (i Inventory) AddProduct(name string, quantity uint)  {
+func Check(name string) (uint, bool) {
+	for i, value := range ProductList {
+		if value.Name == name {
+			return value.Quantity, true
+		}
+	}
+	return 0, false
+}
+
+func WriteToData() {
+
+}
+
+func (i Inventory) AddProduct(name string, quantity uint, price uint, budget uint) bool {
 	p := product.Product
-	pl := product.ProductList
 	d := dealer.Dealer
 	p.Name = name
-	p.Quantity = quantity
-	p.OriginPrice = d.AddProduct(name, quantity)
-	p.Price = p.OriginPrice * (1/5+1)
-	pl = append(pl, p)
+	p.Quantity, p.OriginPrice, budget := d.AddProduct(quantity, price, budget)
+	p.Price = p.OriginPrice * (1/5 + 1)
+	if p.Quantity > quantity {
+		p.Quantity -= quantity
+		i.ProductList = append(i.ProductList, p)
+		WriteToData()
+		return true
+	}
+	return false
 }
+
+func (i Inventory) IncreaseProduct(name string, quantity uint, budget uint) uint {
+	return uint(0)
+}
+
