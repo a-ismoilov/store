@@ -4,6 +4,7 @@ import (
 	"hash/adler32"
 	"runtime/trace"
 	"shop/dealer"
+	"shop/product"
 )
 
 type Inventory struct {
@@ -24,13 +25,7 @@ func WriteToData() {
 }
 
 func (i Inventory) AddProduct(name string, budget uint) bool {
-	p := product.Product
-	d := dealer.Dealer
-	for _, val := i.ProductList {
-		if val.Name == name {
-			
-		}
-	}
+	
 }
 
 func (i Inventory) IncreaseProduct(name string, quantity uint, price uint, budget uint) uint {
