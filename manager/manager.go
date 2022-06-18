@@ -28,8 +28,10 @@ func OurBoss() {
 `)
 		fmt.Scan(&x)
 		if x == 1 {
-
+			fmt.Println("hello")
 		} else if x == 2 {
+			fmt.Println("world")
+		} else if x == 5 {
 
 		}
 	}
