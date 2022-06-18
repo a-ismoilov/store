@@ -10,30 +10,30 @@ type Inventory struct {
 	ProductList product.ProductList
 }
 
-func Check(name string) (uint, bool) {
-	for i, value := range ProductList {
+func Check(name string) (uint, uint, uint) {
+	for _, value := range ProductList {
 		if value.Name == name {
-			return value.Quantity, true
+			return value.Quantity, value.Price, value.OriginPrice
 		}
 	}
-	return 0, false
+	return 0, 0, 0
 }
 
 func WriteToData() {
 
 }
 
-func (i Inventory) AddProduct(name string, budget uint) bool {
+func (i Inventory) AddProduct(name string, budget, quantity uint) (bool, uint, uint, uint) {
 	p := product.Product
 	d := dealer.Dealer
-	for _, val := i.ProductList {
-		if val.Name == name {
-			
-		}
-	}
+	p.Quantity, p.OriginPrice, budget := d.AddProduct(quantity, budget)
+	p.Name = name
+	p.Price = p.OriginPrice * (1/5 + 1)
+	p.ProductList = append(p.ProductList, p)
+	return true, p.Price, p.OriginPrice, budget
 }
 
-func (i Inventory) IncreaseProduct(name string, quantity uint, price uint, budget uint) uint {
+func (i Inventory) IncreaseProduct(name string, quantity, budget uint) (uint, bool) {
 	p := product.Product
 	d := dealer.Dealer
 	p.Name = name
@@ -42,7 +42,8 @@ func (i Inventory) IncreaseProduct(name string, quantity uint, price uint, budge
 		p.Quantity -= quantity
 		p.Price = p.OriginPrice * (1/5+1)
 		i.ProductList = append(i.ProductList, p)
-		return budget
+		return budget, true
 	}
+	return budget, false
 }
 
