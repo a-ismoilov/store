@@ -1,4 +1,4 @@
-package main
+package product
 
 import (
 	"fmt"
@@ -13,7 +13,7 @@ type Product struct {
 	OriginPrice uint
 }
 
-func main() {
+func show() {
 	file, err := os.OpenFile("data/data.txt", os.O_RDWR|os.O_CREATE, 0600)
 	if err != nil {
 		fmt.Print("|can't_open|", err)
