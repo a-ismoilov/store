@@ -1,6 +1,5 @@
 package dealer
 
-import "fmt"
 
 type Dealer struct {}
 
