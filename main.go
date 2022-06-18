@@ -4,6 +4,4 @@ func main () {
 	start()
 }
 
-func start () {
-	
-}
+func start () {}
