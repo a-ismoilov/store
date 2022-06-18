@@ -17,6 +17,9 @@ func (d Dealer) AddProduct(quant uint, price uint, budget uint) (uint, uint, uin
 	}
 	return quant, orignPrice, budget
 }
+func IncreaseProduct(quant uint, orgprice uint, budget uint) {
+
+}
 func RandPrice(quant uint, price uint) uint {
 	rand.Seed(time.Now().Unix())
 	var p uint
