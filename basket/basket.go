@@ -1,22 +1,26 @@
 package basket
 
-import(
+import (
 	"fmt"
 )
 
-type baskets []Basket
+var baskets []Basket
 
-type Basket struct{
-	Name string
-	Price uint
+type Basket struct {
+	Name     string
+	Price    uint
 	Quantity uint
 }
 
-func ListCustomProduct(){
-	sum := 0
-	for i := range baskets{
+func Add(basket Basket) {
+	baskets = append(baskets, basket)
+}
+
+func Over() {
+	var sum uint
+	for i := range baskets {
 		sum += baskets[i].Price
-		fmt.Println(baskets[i].Name,baskets[i].Price,baskets[i].Quantity)
+		fmt.Println(baskets[i].Name, baskets[i].Price, baskets[i].Quantity)
 	}
-	fmt.Println("sum:",sum)
+	fmt.Println("Total:", sum)
 }

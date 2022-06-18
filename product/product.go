@@ -26,3 +26,7 @@ func show() {
 	fmt.Println(data)
 	file.Close()
 }
+
+func Show(){
+
+}
