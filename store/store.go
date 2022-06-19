@@ -4,12 +4,12 @@ import (
 	"fmt"
 	b "shop/basket"
 	i "shop/inventory"
-	"shop/product"
+	p "shop/product"
 )
 
 type Store struct {
-	Profit    uint
-	Budget    uint
+	Profit uint
+	Budget uint
 }
 
 func Sell() {
@@ -25,9 +25,9 @@ func Sell() {
 		cmd := ""
 		print("choose >>> ")
 		fmt.Scan(&cmd)
-		switch cmd{
+		switch cmd {
 		case "1":
-			product.Show()
+			p.Show()
 		case "2":
 			b.Over()
 		default:
@@ -53,7 +53,7 @@ func Sell() {
 
 		fmt.Print("Enter product quantity >>> ")
 		_, err = fmt.Scan(&quantityCh)
-		if err != nil{
+		if err != nil {
 			fmt.Println("can't read input")
 			continue
 		}
@@ -63,8 +63,8 @@ func Sell() {
 		if quantity != 0 {
 			if quantityCh-quantity >= 0 {
 				basket = b.Basket{
-					Name: name,
-					Price: price * quantity,
+					Name:     name,
+					Price:    price * quantity,
 					Quantity: quantity,
 				}
 				profit = price*quantity - originPrice*quantity
@@ -76,8 +76,8 @@ func Sell() {
 				if boolean {
 					profit = price*quantity - originPrice*quantity
 					basket = b.Basket{
-						Name: name,
-						Price: price * quantity,
+						Name:     name,
+						Price:    price * quantity,
 						Quantity: quantity,
 					}
 					b.Add(basket)
@@ -92,8 +92,8 @@ func Sell() {
 			budget = bud
 			if boolean {
 				basket = b.Basket{
-					Name: name,
-					Price: price * quantity,
+					Name:     name,
+					Price:    price * quantity,
 					Quantity: quantity,
 				}
 				profit = price*quantity - originPrice*quantity
@@ -108,8 +108,8 @@ func Sell() {
 	}
 }
 
-func clean(){
-	if err := recover(); err != nil{
+func clean() {
+	if err := recover(); err != nil {
 		fmt.Print("you can't cheat us bro :)")
 	}
 }
