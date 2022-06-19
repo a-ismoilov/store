@@ -2,6 +2,8 @@ package manager
 
 import (
 	"fmt"
+	"shop/dealer"
+	"shop/product"
 )
 
 type Manager struct {
@@ -28,9 +30,12 @@ func OurBoss() {
 `)
 		fmt.Scan(&x)
 		if x == 1 {
-			fmt.Println("hello")
+			product.Show()
 		} else if x == 2 {
-			fmt.Println("world")
+			
+			fmt.Println("How much add product?")
+
+			dealer.Dealer.AddProduct()
 		} else if x == 5 {
 
 		}

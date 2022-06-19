@@ -8,8 +8,8 @@ import (
 )
 
 type Store struct {
-	Profit    uint
-	Budget    uint
+	Profit uint
+	Budget uint
 }
 
 func Sell() {
@@ -30,7 +30,7 @@ func Sell() {
 		cmd := ""
 		print("choose >>> ")
 		fmt.Scan(&cmd)
-		switch cmd{
+		switch cmd {
 		case "1":
 			p.Show()
 		case "2":
@@ -57,8 +57,12 @@ func Sell() {
 		}
 
 		fmt.Print("Enter product quantity >>> ")
+		_, err = fmt.Scan(&quantityCh)
+		if err != nil {
+
 		_, err = fmt.Scan(&quantityIn)
 		if err != nil{
+
 			fmt.Println("can't read input")
 			continue
 		}
@@ -71,6 +75,7 @@ func Sell() {
 					Name: name,
 					Price: price * quantityIn,
 					Quantity: quantityIn,
+
 				}
 				s.Profit = price*quantityIn - originPrice*quantityIn
 				b.Add(basket)
@@ -113,8 +118,8 @@ func Sell() {
 	}
 }
 
-func clean(){
-	if err := recover(); err != nil{
+func clean() {
+	if err := recover(); err != nil {
 		fmt.Print("you can't cheat us bro :)")
 	}
 }
