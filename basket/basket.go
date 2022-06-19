@@ -4,13 +4,13 @@ import (
 	"fmt"
 )
 
-var baskets []Basket
-
 type Basket struct {
 	Name     string
 	Price    uint
 	Quantity uint
 }
+
+var baskets []Basket
 
 func Add(basket Basket) {
 	baskets = append(baskets, basket)

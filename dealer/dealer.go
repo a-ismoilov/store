@@ -7,6 +7,9 @@ import (
 
 type Dealer struct{}
 
+
+func IncreaseProduct(quant uint, orgprice uint, budget uint) {}
+
 func (d Dealer) AddProduct(quant uint, price uint, budget uint) (uint, uint, uint) {
 	orignPrice := RandPrice(quant, price)
 	if orignPrice*quant > budget {
@@ -17,6 +20,7 @@ func (d Dealer) AddProduct(quant uint, price uint, budget uint) (uint, uint, uin
 	}
 	return quant, orignPrice, budget
 }
+
 func IncreaseProduct(quant uint, orgprice uint, budget uint) {
 
 }
