@@ -15,12 +15,14 @@ func main() {
 		2 - manager
 		3 - exit
 		`)
+
 		cmd := ""
 		_, err := fmt.Scan(&cmd)
 		if err != nil {
 			fmt.Print("can't read input")
 			continue
 		}
+		
 		switch cmd {
 		case "1":
 			s.Sell()
