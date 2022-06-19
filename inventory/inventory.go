@@ -4,7 +4,6 @@ import (
 	"hash/adler32"
 	"runtime/trace"
 	"shop/dealer"
-
 	"shop/product"
 )
 
