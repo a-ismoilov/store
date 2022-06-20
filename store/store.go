@@ -41,11 +41,11 @@ func Sell() {
 		}
 
 		var (
-			originPrice uint //original orice of the product
-			price       uint //price of the product in store
-			quantity    uint //overall quantity of theproduct
-			name        string //name of the product
-			quantityIn  uint //quantity of product that user inputs
+			originPrice uint     //original orice of the product
+			price       uint     //price of the product in store
+			quantity    uint     //overall quantity of theproduct
+			name        string   //name of the product
+			quantityIn  uint     //quantity of product that user inputs
 			basket      b.Basket //basket for one product
 		)
 
@@ -57,62 +57,62 @@ func Sell() {
 		}
 
 		fmt.Print("Enter product quantity >>> ")
-		_, err = fmt.Scan(&quantityCh)
+		_, err = fmt.Scan(&quantityIn)
 		if err != nil {
 
-		_, err = fmt.Scan(&quantityIn)
-		if err != nil{
+			_, err = fmt.Scan(&quantityIn)
+			if err != nil {
 
-			fmt.Println("can't read input")
-			continue
-		}
-
-		quantity, price, originPrice = i.Check(name)
-
-		if quantity != 0 {
-			if quantity-quantityIn >= 0 {
-				basket = b.Basket{
-					Name: name,
-					Price: price * quantityIn,
-					Quantity: quantityIn,
-
-				}
-				s.Profit = price*quantityIn - originPrice*quantityIn
-				b.Add(basket)
+				fmt.Println("can't read input")
 				continue
-			} else {
-				bud, boolean := inv.IncreaseProduct(name, quantityIn, s.Budget)
-				s.Budget = bud
-				if boolean {
-					s.Profit = price*quantityIn - originPrice*quantityIn
+			}
+
+			quantity, price, originPrice = i.Check(name)
+
+			if quantity != 0 {
+				if quantity-quantityIn >= 0 {
 					basket = b.Basket{
-						Name: name,
-						Price: price * quantityIn,
+						Name:     name,
+						Price:    price * quantityIn,
 						Quantity: quantityIn,
 					}
+					s.Profit = price*quantityIn - originPrice*quantityIn
 					b.Add(basket)
+					continue
+				} else {
+					bud, boolean := inv.IncreaseProduct(name, quantityIn, s.Budget)
+					s.Budget = bud
+					if boolean {
+						s.Profit = price*quantityIn - originPrice*quantityIn
+						basket = b.Basket{
+							Name:     name,
+							Price:    price * quantityIn,
+							Quantity: quantityIn,
+						}
+						b.Add(basket)
+						continue
+					} else {
+						fmt.Println("we can't effort with this product")
+						continue
+					}
+				}
+			} else {
+				boolean, price, originPrice, bud := inv.AddProduct(name, s.Budget, quantity)
+				s.Budget = bud
+				if boolean {
+					basket = b.Basket{
+						Name:     name,
+						Price:    price * quantityIn,
+						Quantity: quantityIn,
+					}
+					s.Profit = price*quantityIn - originPrice*quantityIn
+					b.Add(basket)
+					fmt.Print(s.Profit)
 					continue
 				} else {
 					fmt.Println("we can't effort with this product")
 					continue
 				}
-			}
-		} else {
-			boolean, price, originPrice, bud := inv.AddProduct(name, s.Budget, quantity)
-			s.Budget = bud
-			if boolean {
-				basket = b.Basket{
-					Name: name,
-					Price: price * quantityIn,
-					Quantity: quantityIn,
-				}
-				s.Profit = price*quantityIn - originPrice*quantityIn
-				b.Add(basket)
-				fmt.Print(s.Profit)
-				continue
-			} else {
-				fmt.Println("we can't effort with this product")
-				continue
 			}
 		}
 	}

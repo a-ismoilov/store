@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	p "shop/basket"
-	m "shop/manager"
-	s "shop/store"
+	"shop/basket"
+	"shop/manager"
+	"shop/store"
 )
 
 func main() {
@@ -25,11 +25,11 @@ func main() {
 		
 		switch cmd {
 		case "1":
-			s.Sell()
+			store.Sell()
 		case "2":
-			m.OurBoss()
+			manager.OurBoss()
 		case "3":
-			p.Over()
+			basket.Over()
 			return
 		default:
 			panic("what did you do bro?")
@@ -39,7 +39,7 @@ func main() {
 
 func clean() {
 	if err := recover(); err != nil {
-		p.Over()
+		basket.Over()
 		return
 	}
 }
